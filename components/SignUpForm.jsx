@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Poppins } from 'next/font/google'
 import * as z from 'zod'
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -13,6 +14,7 @@ const schema = z.object({
   firstName: z.string().nonempty(),
   lastName: z.string().nonempty(),
   username: z.string().nonempty(),
+  email: z.string().nonempty(),
   password: z.string().min(6),
   rememberMe: z.boolean(),
 })
@@ -22,11 +24,14 @@ const SignUpPage = () => {
     firstName: '',
     lastName: '',
     username: '',
+    email: '',
     password: '',
     rememberMe: false,
   })
 
   const [formErrors, setFormErrors] = useState({})
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target
@@ -61,6 +66,7 @@ const SignUpPage = () => {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             First Name:
             <input
+              placeholder="Ryan"
               type="text"
               name="firstName"
               value={formData.firstName}
@@ -79,13 +85,13 @@ const SignUpPage = () => {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Last Name:
             <input
+              placeholder="Fay"
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.lastName ? 'border-red-500' : 'border-gray-200'
-                } rounded py-3 px
- mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'
+                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
             />
             {formErrors.lastName && (
               <p className="text-red-500 text-xs italic">
@@ -95,10 +101,12 @@ const SignUpPage = () => {
           </label>
         </div>
       </div>
+
       <div className="mb-4">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Username:
           <input
+            placeholder="ryanfay"
             type="text"
             name="username"
             value={formData.username}
@@ -111,20 +119,51 @@ const SignUpPage = () => {
           )}
         </label>
       </div>
+
+      <div className="mb-4">
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Email:
+          <input
+            placeholder="ryanfay@edgevana.com"
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
+              } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+          />
+          {formErrors.email && (
+            <p className="text-red-500 text-xs italic">{formErrors.email}</p>
+          )}
+        </label>
+      </div>
+
       <div className="mb-6">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
-              } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-          />
-          {formErrors.password && (
-            <p className="text-red-500 text-xs italic">{formErrors.password}</p>
-          )}
+          <div className="relative">
+            <input
+              placeholder="******"
+              type={showPassword ? 'text' : 'password'}
+              // type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
+                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 px-3 flex items-center"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+            </button>
+
+            {formErrors.password && (
+              <p className="text-red-500 text-xs italic">{formErrors.password}</p>
+            )}
+          </div>
         </label>
       </div>
       <div className="mb-6">
@@ -142,7 +181,7 @@ const SignUpPage = () => {
       <div className="flex items-center justify-between">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-brand-darkblue hover:bg-brand-darkblue-light text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Sign Up
         </button>
