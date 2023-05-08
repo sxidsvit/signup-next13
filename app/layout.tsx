@@ -8,6 +8,8 @@ const inter = Poppins({
   weight: ['300', '400', '500', '600', '700'],
 })
 
+console.log('inter: ', inter)
+
 export const metadata = {
   title: 'Sign UP Next13',
   description: 'This is test task from Genius Software',
