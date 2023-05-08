@@ -16,8 +16,8 @@ module.exports = {
         '2xl': '1536px', // 2X extra-large screens
       },
       colors: {
-        "brand-darkblue": "hsl(233, 52%, 40%)",
-        "brand-darkblue-light": "hsl(233, 52%, 60%)",
+        "brand-darkblue": "hsl(231, 56%, 40%)",
+        "brand-darkblue-light": "hsl(231, 56%, 60%)",
 
       },
     },

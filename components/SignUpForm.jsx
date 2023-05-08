@@ -143,9 +143,8 @@ const SignUpPage = () => {
           Password:
           <div className="relative">
             <input
-              placeholder="******"
+              placeholder="********"
               type={showPassword ? 'text' : 'password'}
-              // type="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
@@ -166,22 +165,26 @@ const SignUpPage = () => {
           </div>
         </label>
       </div>
+
       <div className="mb-6">
-        <label className="block text-gray-700 font-bold">
+        <label className="flex items-start text-gray-700 font-bold">
           <input
             type="checkbox"
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleInputChange}
-            className="mr-2 leading-tight"
+            className="leading-tight w-6 h-6 mr-5  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
           />
-          <span className="text-sm">Remember me</span>
+          <p className="text-sm font-normal">
+            I certify that I am 18 years of age or older, I agree to the Edgevana's <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Polici</span>
+          </p>
         </label>
       </div>
-      <div className="flex items-center justify-between">
+
+      <div className="flex items-center  justify-between">
         <button
           type="submit"
-          className="bg-brand-darkblue hover:bg-brand-darkblue-light text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
         >
           Sign Up
         </button>
