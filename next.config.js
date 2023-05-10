@@ -7,10 +7,11 @@ const nextConfig = {
     domains: ['localhost: 3000'],
   },
   webpack(config) {
-    config.experiments = {
-      ...config.experiments,
-      topLevelAwait: true,
-    }
+    config.resolve.alias["@"] = __dirname,
+      config.experiments = {
+        ...config.experiments,
+        topLevelAwait: true,
+      }
     return config
   }
 }

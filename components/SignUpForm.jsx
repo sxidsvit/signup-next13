@@ -22,8 +22,6 @@ const schema = z.object({
 
 const SignUpPage = () => {
 
-
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -34,6 +32,7 @@ const SignUpPage = () => {
   })
 
   const [formErrors, setFormErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (event) => {
@@ -44,9 +43,11 @@ const SignUpPage = () => {
     }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(formData)
+    setIsSubmitting(true);
+
+    console.log('handleSubmit - formData: ', formData)
 
     const validationResult = schema.safeParse(formData)
 
@@ -54,9 +55,23 @@ const SignUpPage = () => {
       setFormErrors(validationResult.error.formErrors.fieldErrors);
       return;
     }
-    // Добавьте здесь логику отправки формы на сервер
+    try {
+      const response = await fetch("/api/user/new", {
+        method: "POST",
+        body: JSON.stringify({
+          data: formData,
+        }),
+      });
 
-  }
+      if (response.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <form
@@ -195,6 +210,7 @@ const SignUpPage = () => {
       </div>
     </form>
   )
+
 }
 
 export default SignUpPage
