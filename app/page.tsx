@@ -1,5 +1,7 @@
 import React from 'react'
 import SignUpForm from '@/components/SignUpForm'
+import { config } from 'dotenv'
+config()
 
 const Home = () => {
   return (
