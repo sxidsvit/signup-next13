@@ -47,7 +47,6 @@ const SignUpPage = () => {
     event.preventDefault()
     setIsSubmitting(true);
 
-    console.log('handleSubmit - formData: ', formData)
 
     const validationResult = schema.safeParse(formData)
 
