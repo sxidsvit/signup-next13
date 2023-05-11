@@ -1,7 +1,15 @@
 import User from "@/models/user";
 import { connectToDB } from "@/utils/database";
 
-export const POST = async (request) => {
+type User = {
+  firstName: String,
+  lastName: String,
+  username: String,
+  email: String,
+  password: String,
+}
+
+export const POST = async (request: { json: () => PromiseLike<{ data: User }> | { data: User }; }) => {
 
   const { data: { firstName, lastName, username, email, password } } = await request.json();
 
@@ -11,7 +19,6 @@ export const POST = async (request) => {
     const newUser = new User({ firstName, lastName, username, email, password });
 
     const result = await newUser.save();
-    console.log('result: ', result);
 
     return new Response(JSON.stringify(result), { status: 201 })
   } catch (error) {
