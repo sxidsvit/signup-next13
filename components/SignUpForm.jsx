@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Poppins } from 'next/font/google'
 import * as z from 'zod'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
@@ -9,7 +9,6 @@ const inter = Poppins({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600'],
 })
-
 
 const schema = z.object({
   firstName: z.string().nonempty(),
@@ -31,7 +30,6 @@ const SignUpPage = () => {
     privacyPolicy: false,
   }
 
-
   const [formData, setFormData] = useState(initialFormData)
 
   const [showPassword, setShowPassword] = useState(false);
@@ -45,8 +43,14 @@ const SignUpPage = () => {
       ...prevState,
       [name]: type === 'checkbox' ? checked : value,
     }))
-    if (!formValid) setFormValid(true)
+    // if (!formValid) setFormValid(true)
   }
+
+  useEffect(() => {
+    setFormErrors({});
+    setFormValid(true)
+    setIsSubmitting(false)
+  }, [formData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -56,7 +60,7 @@ const SignUpPage = () => {
 
     if (!validationResult.success) {
       setFormErrors(validationResult.error.formErrors.fieldErrors);
-      setFormValid(validationResult.success)
+      setFormValid(prev => validationResult.success)
       return;
     }
     try {
@@ -215,7 +219,7 @@ const SignUpPage = () => {
           className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
         >
 
-          {isSubmitting ? 'Submitting' : !formValid ? 'Not valid form' : 'Sign Up'}
+          {!formValid ? 'Not valid form' : isSubmitting ? 'Submitting' : 'Sign Up'}
         </button>
       </div>
     </form>
