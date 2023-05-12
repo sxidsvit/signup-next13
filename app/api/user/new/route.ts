@@ -9,7 +9,7 @@ type User = {
   password: String,
 }
 
-export const POST = async (request: { json: () => PromiseLike<{ data: User }> | { data: User }; }) => {
+export const POST = async (request: { json: () => PromiseLike<{ data: User }> | { data: User } }) => {
 
   const { data: { firstName, lastName, username, email, password } } = await request.json();
 
