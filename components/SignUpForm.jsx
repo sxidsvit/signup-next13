@@ -238,7 +238,7 @@ const SignUpPage = ({ formtype }) => {
         </div>
 
         <div className="mb-6">
-          <label className="flex items-start text-gray-700 font-bold mb-2">
+          <label className="custom-checkbox flex items-start text-gray-700 font-bold mb-2">
             <input
               type="checkbox"
               name="privacyPolicy"
@@ -248,6 +248,7 @@ const SignUpPage = ({ formtype }) => {
               role="checkbox"
               aria-label="I agree to the terms of Privacy Policy"
             />
+            <span className="checkmark"></span>
             <p className="text-sm font-normal">
               I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Policy</span>
             </p>
