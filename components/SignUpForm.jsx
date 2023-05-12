@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation"
 // import { useRouter } from "next/router"
-
+import Link from 'next/link';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -27,7 +27,7 @@ const schema = z.object({
   privacyPolicy: z.boolean().refine((val) => val === true, { message: "You should adopt the Terms of Use" }),
 })
 
-const SignUpPage = () => {
+const SignUpPage = ({ formtype }) => {
 
   const router = useRouter();
 
@@ -83,7 +83,7 @@ const SignUpPage = () => {
       console.log('response.ok: ', response.ok);
 
       if (response.ok) {
-        toast.success(`User signup successfuly ${response.statusText}`, {
+        toast.success(`${response.statusText}`, {
           position: "top-center",
           autoclose: 1000,
           theme: 'light',
@@ -243,7 +243,7 @@ const SignUpPage = () => {
           )}
         </div>
 
-        <div className="flex items-center  justify-between">
+        <div className="flex flex-col items-center justify-between gap-5">
           <button
             type="submit"
             className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
@@ -251,6 +251,18 @@ const SignUpPage = () => {
 
             {!formValid ? 'Not valid form' : isSubmitting ? 'Submitting' : 'Sign Up'}
           </button>
+
+          {formtype === "business" ?
+            (<Link href="/signup-ordinar">
+              <span className="font-bold text-brand-darkblue" >Sign Up </span>
+              for ordinary account
+            </Link>) :
+            (<Link href="/signup-business">
+              <span className="font-bold text-brand-darkblue" >Sign Up </span>
+              for business account
+            </Link>)
+          }
+
         </div>
       </form>
     </>
