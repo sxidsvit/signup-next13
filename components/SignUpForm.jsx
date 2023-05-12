@@ -22,18 +22,22 @@ const schema = z.object({
 
 const SignUpPage = () => {
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     firstName: '',
     lastName: '',
     username: '',
     email: '',
     password: '',
     privacyPolicy: false,
-  })
+  }
 
-  const [formErrors, setFormErrors] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const [formData, setFormData] = useState(initialFormData)
+
   const [showPassword, setShowPassword] = useState(false);
+  const [formErrors, setFormErrors] = useState({})
+  const [formValid, setFormValid] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target
@@ -41,17 +45,18 @@ const SignUpPage = () => {
       ...prevState,
       [name]: type === 'checkbox' ? checked : value,
     }))
+    if (!formValid) setFormValid(true)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     setIsSubmitting(true);
 
-
     const validationResult = schema.safeParse(formData)
 
     if (!validationResult.success) {
       setFormErrors(validationResult.error.formErrors.fieldErrors);
+      setFormValid(validationResult.success)
       return;
     }
     try {
@@ -63,6 +68,11 @@ const SignUpPage = () => {
       });
 
       if (response.ok) {
+        setFormData(initialFormData)
+        setFormErrors({})
+        setFormValid(true)
+        setIsSubmitting(false)
+        alert(response.statusText)
         router.push("/");
       }
     } catch (error) {
@@ -204,7 +214,8 @@ const SignUpPage = () => {
           type="submit"
           className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
         >
-          Sign Up
+
+          {isSubmitting ? 'Submitting' : !formValid ? 'Not valid form' : 'Sign Up'}
         </button>
       </div>
     </form>

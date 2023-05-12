@@ -22,7 +22,6 @@ export const POST = async (request: { json: () => PromiseLike<{ data: User }> | 
 
     return new Response(JSON.stringify(result), { status: 201 })
   } catch (error) {
-    console.log('error.message: ', error.message);
     return new Response("Failed to create a new user", { status: 500 });
   }
 }
