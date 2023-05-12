@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation"
 // import { useRouter } from "next/router"
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+
 import { Poppins } from 'next/font/google'
 import * as z from 'zod'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
@@ -79,15 +83,20 @@ const SignUpPage = () => {
       console.log('response.ok: ', response.ok);
 
       if (response.ok) {
-        router.push('/welcome');
-        setFormData(initialFormData)
-        setFormErrors({})
-        setFormValid(true)
-        setIsSubmitting(false)
-        // alert(`${response.statusText}`)
-        // toast.success(`User signup successfuly ${response.statusText}`,
-        //   { position: "top-center", autoclose: 2000, theme: 'dark' })
+        toast.success(`User signup successfuly ${response.statusText}`, {
+          position: "top-center",
+          autoclose: 1000,
+          theme: 'light',
+          onClose: () => {
+            setFormData(initialFormData)
+            setFormErrors({})
+            setFormValid(true)
+            setIsSubmitting(false)
+            router.push('/welcome')
+          }
+        })
       }
+
     } catch (error) {
       console.log(error);
     } finally {
@@ -96,143 +105,155 @@ const SignUpPage = () => {
   };
 
   return (
-
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    >
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
-            First Name:
-            <input
-              placeholder="Ryan"
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-            />
-          </label>
-          {formErrors.firstName && (
-            <p className="text-red-500 text-xs  lowercase font-normal italic">
-              {formErrors.firstName}
-            </p>
-          )}
-        </div>
-        <div className="w-full md:w-1/2 px-3">
-          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Last Name:
-            <input
-              placeholder="Fay"
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'
-                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-            />
-          </label>
-          {formErrors.lastName && (
-            <p className="text-red-500 text-xs  lowercase  font-normal italic">
-              {formErrors.lastName}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Username:
-          <input
-            placeholder="ryanfay"
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
-              } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-          />
-        </label>
-        {formErrors.username && (
-          <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.username}</p>
-        )}
-      </div>
-
-      <div className="mb-4">
-        <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Email:
-          <input
-            placeholder="ryanfay@edgevana.com"
-            type="text"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
-              } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-          />
-        </label>
-        {formErrors.email && (
-          <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.email}</p>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Password:
-          <div className="relative">
-            <input
-              placeholder="********"
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
-                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-            />
-            <button
-              type="button"
-              className="absolute inset-y-0 right-0 px-3 flex items-center"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
-            </button>
-
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+              First Name:
+              <input
+                placeholder="Ryan"
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              />
+            </label>
+            {formErrors.firstName && (
+              <p className="text-red-500 text-xs  lowercase font-normal italic">
+                {formErrors.firstName}
+              </p>
+            )}
           </div>
-        </label>
-        {formErrors.password && (
-          <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.password}</p>
-        )}
-      </div>
+          <div className="w-full md:w-1/2 px-3">
+            <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Last Name:
+              <input
+                placeholder="Fay"
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'
+                  } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              />
+            </label>
+            {formErrors.lastName && (
+              <p className="text-red-500 text-xs  lowercase  font-normal italic">
+                {formErrors.lastName}
+              </p>
+            )}
+          </div>
+        </div>
 
-      <div className="mb-6">
-        <label className="flex items-start text-gray-700 font-bold mb-2">
-          <input
-            type="checkbox"
-            name="privacyPolicy"
-            checked={formData.privacyPolicy}
-            onChange={handleInputChange}
-            className="leading-tight w-6 h-6 mr-5  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
-          />
-          <p className="text-sm font-normal">
-            I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Policy</span>
-          </p>
-        </label>
-        {formErrors.privacyPolicy && (
-          <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.privacyPolicy}</p>
-        )}
-      </div>
+        <div className="mb-4">
+          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Username:
+            <input
+              placeholder="ryanfay"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
+                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+            />
+          </label>
+          {formErrors.username && (
+            <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.username}</p>
+          )}
+        </div>
 
-      <div className="flex items-center  justify-between">
-        <button
-          type="submit"
-          className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
-        >
+        <div className="mb-4">
+          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Email:
+            <input
+              placeholder="ryanfay@edgevana.com"
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
+                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+            />
+          </label>
+          {formErrors.email && (
+            <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.email}</p>
+          )}
+        </div>
 
-          {!formValid ? 'Not valid form' : isSubmitting ? 'Submitting' : 'Sign Up'}
-        </button>
-      </div>
-    </form>
+        <div className="mb-6">
+          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Password:
+            <div className="relative">
+              <input
+                placeholder="********"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
+                  } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 px-3 flex items-center"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+              </button>
+
+            </div>
+          </label>
+          {formErrors.password && (
+            <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.password}</p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label className="flex items-start text-gray-700 font-bold mb-2">
+            <input
+              type="checkbox"
+              name="privacyPolicy"
+              checked={formData.privacyPolicy}
+              onChange={handleInputChange}
+              className="leading-tight w-6 h-6 mr-5  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
+            />
+            <p className="text-sm font-normal">
+              I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Policy</span>
+            </p>
+          </label>
+          {formErrors.privacyPolicy && (
+            <p className="text-red-500 text-xs  lowercase font-normal italic">{formErrors.privacyPolicy}</p>
+          )}
+        </div>
+
+        <div className="flex items-center  justify-between">
+          <button
+            type="submit"
+            className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+          >
+
+            {!formValid ? 'Not valid form' : isSubmitting ? 'Submitting' : 'Sign Up'}
+          </button>
+        </div>
+      </form>
+    </>
   )
 
 }
