@@ -1,14 +1,6 @@
 import User from "@/models/user";
 import { connectToDB } from "@/utils/database";
 
-// type User = {
-//   firstName: String,
-//   lastName: String,
-//   username: String,
-//   email: String,
-//   password: String,
-// }
-
 export const POST = async (request: Request) => {
 
   const { data: { firstName, lastName, username, email, password } } = await request.json();

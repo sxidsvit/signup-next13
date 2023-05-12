@@ -1,9 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from "next/navigation"
+// import { useRouter } from "next/router"
+
 import { Poppins } from 'next/font/google'
 import * as z from 'zod'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+import { toast } from 'react-toastify'
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -20,6 +24,8 @@ const schema = z.object({
 })
 
 const SignUpPage = () => {
+
+  const router = useRouter();
 
   const initialFormData = {
     firstName: '',
@@ -43,7 +49,6 @@ const SignUpPage = () => {
       ...prevState,
       [name]: type === 'checkbox' ? checked : value,
     }))
-    // if (!formValid) setFormValid(true)
   }
 
   useEffect(() => {
@@ -71,13 +76,17 @@ const SignUpPage = () => {
         }),
       });
 
+      console.log('response.ok: ', response.ok);
+
       if (response.ok) {
+        router.push('/welcome');
         setFormData(initialFormData)
         setFormErrors({})
         setFormValid(true)
         setIsSubmitting(false)
-        alert(response.statusText)
-        router.push("/");
+        // alert(`${response.statusText}`)
+        // toast.success(`User signup successfuly ${response.statusText}`,
+        //   { position: "top-center", autoclose: 2000, theme: 'dark' })
       }
     } catch (error) {
       console.log(error);
@@ -87,6 +96,7 @@ const SignUpPage = () => {
   };
 
   return (
+
     <form
       onSubmit={handleSubmit}
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
