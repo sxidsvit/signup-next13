@@ -2,6 +2,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -16,12 +17,14 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body className={inter.className}>
+      {/* With background gradient under the children component
       <div className="main">
         <div className="gradient" />
-      </div>
+      </div> */}
       <main className="app">
         <Nav />
         {children}
+        <Footer />
       </main>
     </body>
   </html>
