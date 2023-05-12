@@ -134,6 +134,8 @@ const SignUpPage = ({ formtype }) => {
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                role="textbox"
+                aria-label="First Name"
               />
             </label>
             {formErrors.firstName && (
@@ -153,6 +155,8 @@ const SignUpPage = ({ formtype }) => {
                 onChange={handleInputChange}
                 className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'
                   } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                role="textbox"
+                aria-label="Last Name"
               />
             </label>
             {formErrors.lastName && (
@@ -174,6 +178,8 @@ const SignUpPage = ({ formtype }) => {
               onChange={handleInputChange}
               className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
                 } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              role="textbox"
+              aria-label="Username"
             />
           </label>
           {formErrors.username && (
@@ -186,12 +192,14 @@ const SignUpPage = ({ formtype }) => {
             Email:
             <input
               placeholder="ryanfay@edgevana.com"
-              type="text"
+              type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
               className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
                 } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              role="textbox"
+              aria-label="Email Address"
             />
           </label>
           {formErrors.email && (
@@ -211,6 +219,8 @@ const SignUpPage = ({ formtype }) => {
                 onChange={handleInputChange}
                 className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
                   } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                role="textbox"
+                aria-label="Password"
               />
               <button
                 type="button"
@@ -235,6 +245,8 @@ const SignUpPage = ({ formtype }) => {
               checked={formData.privacyPolicy}
               onChange={handleInputChange}
               className="leading-tight w-6 h-6 mr-5  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
+              role="checkbox"
+              aria-label="I agree to the terms of Privacy Policy"
             />
             <p className="text-sm font-normal">
               I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Policy</span>
