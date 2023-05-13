@@ -83,7 +83,7 @@ const SignUpPage = ({ formtype }) => {
 
       if (response.ok) {
         const jsonData = await response.json();
-        const status = response.statusText || Created
+        const status = response.statusText || 'Created'
         toast.success(`${status}`, {
           position: "top-center",
           autoclose: 1000,
