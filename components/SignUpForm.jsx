@@ -80,8 +80,6 @@ const SignUpPage = ({ formtype }) => {
         }),
       });
 
-      console.log('response.ok: ', response.ok);
-
       if (response.ok) {
         toast.success(`${response.statusText}`, {
           position: "top-center",
@@ -94,6 +92,12 @@ const SignUpPage = ({ formtype }) => {
             setIsSubmitting(false)
             router.push('/welcome')
           }
+        })
+      } else {
+        toast.error(`Such email already exist`, {
+          position: "top-center",
+          autoclose: 1000,
+          theme: 'light',
         })
       }
 
