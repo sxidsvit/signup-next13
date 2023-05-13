@@ -85,7 +85,7 @@ const SignUpPage = ({ formtype }) => {
         const jsonData = await response.json();
         console.log('Sign Up form response: ', jsonData);
         console.log('response.statusText: ', response.statusText);
-        toast.success(`${response.statusText}`, {
+        toast.success(`${response.statusText} || Created`, {
           position: "top-center",
           autoclose: 1000,
           theme: 'light',
