@@ -18,6 +18,10 @@ module.exports = {
       colors: {
         "brand-darkblue": "hsl(231, 56%, 40%)",
         "brand-darkblue-light": "hsl(231, 56%, 60%)",
+        black: "rgb(42, 42, 60)",
+        gray: {
+          '700': "rgb(42, 42, 60)",
+        }
 
       },
     },
