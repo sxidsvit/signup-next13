@@ -49,7 +49,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto px-6;
+  @apply relative z-10 min-h-screen flex justify-between items-center flex-col max-w-7xl mx-auto px-6;
 }
 
 /* Custom checkbox */
