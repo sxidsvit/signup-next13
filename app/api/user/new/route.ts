@@ -14,6 +14,6 @@ export const POST = async (request: Request) => {
 
     return new Response(JSON.stringify(result), { status: 201 })
   } catch (error) {
-    return new Response("Failed to create a new user", { status: 500 });
+    return new Response("Such email already exist", { status: 500 });
   }
 }

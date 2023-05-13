@@ -80,7 +80,10 @@ const SignUpPage = ({ formtype }) => {
         }),
       });
 
+
       if (response.ok) {
+        const jsonData = await response.json();
+        console.log('Sign Up form response: ', jsonData);
         toast.success(`${response.statusText}`, {
           position: "top-center",
           autoclose: 1000,
@@ -94,7 +97,8 @@ const SignUpPage = ({ formtype }) => {
           }
         })
       } else {
-        toast.error(`Such email already exist`, {
+        const responseText = await response.text();
+        toast.error(`${responseText}`, {
           position: "top-center",
           autoclose: 1000,
           theme: 'light',
@@ -102,7 +106,9 @@ const SignUpPage = ({ formtype }) => {
       }
 
     } catch (error) {
-      console.log(error);
+      console.log('Error:', error);
+      const text = await error.response.text();
+      console.error('Response:', text);
     } finally {
       setIsSubmitting(false);
     }
