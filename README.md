@@ -2,7 +2,7 @@
 
 ### Given the following:
 
-[Figm design](https://www.figma.com/file/msl3WqbnS4krgddKJ0ObKz/Front-end-Technical-Challenge?type=design&node-id=1-579&t=IOckPF0oXvkTyMeo-0)
+[Figma design](https://www.figma.com/file/msl3WqbnS4krgddKJ0ObKz/Front-end-Technical-Challenge?type=design&node-id=1-579&t=IOckPF0oXvkTyMeo-0)
 
 CSS: Included in zip archive
 
