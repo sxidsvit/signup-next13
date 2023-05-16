@@ -5,9 +5,11 @@ config()
 
 const SignUpBusiness = () => {
   return (
-    <main>
-      <h1 className="text-3xl font-bold my-8">Sign Up</h1>
-      <h3 className="text-xl  my-8 text-brand-darkblue-light">
+    <main className="w-[400px]">
+      <h1 className="text-[26px] leading-[26px] font-bold text-black mb-[11px]">
+        Sign Up
+      </h1>
+      <h3 className="text-[15px] leading-[15px] font-normal  text-gray-700 mb-[32px]">
         Create your business account
       </h3>
       <SignUpForm formtype="business" />

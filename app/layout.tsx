@@ -16,12 +16,8 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
-    <body className={`min-h-screen ${inter.className}`}>
-      {/* With background gradient under the children component
-      <div className="main">
-        <div className="gradient" />
-      </div> */}
-      <main className="app ">
+    <body className={`min-h-screen max-w-[864px] mx-auto ${inter.className}`}>
+      <main className="app">
         <Nav />
         {children}
         <Footer />

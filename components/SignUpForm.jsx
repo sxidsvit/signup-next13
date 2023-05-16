@@ -31,7 +31,6 @@ const SignUpPage = ({ formtype }) => {
 
   const router = useRouter();
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', '')
-  console.log('currentUser: ', currentUser);
 
   const initialFormData = {
     firstName: '',
@@ -133,13 +132,11 @@ const SignUpPage = ({ formtype }) => {
         theme="light" />
       <form
         onSubmit={handleSubmit}
-        //  With border and shadow for form
-        // className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        className="bg-white  px-8 pt-6 pb-8 mb-4"
+        className="bg-white pt-6 pb-8 mb-4"
       >
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="flex flex-wrap -mx-3 mb-">
+          <div className="w-full md:w-1/2 px-3 mb-0 md:mb-0">
+            <label className="form-label">
               First Name:
               <input
                 placeholder="Ryan"
@@ -147,7 +144,7 @@ const SignUpPage = ({ formtype }) => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                className={`w-full md:w-[192px] h-[52px] appearance-none block  bg-gray-100 text-gray-700 border  rounded-lg p-[18px] mt-[11px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${formErrors.firstName ? 'border-red-500' : 'border-gray-100'}`}
                 role="textbox"
                 aria-label="First Name"
               />
@@ -159,7 +156,7 @@ const SignUpPage = ({ formtype }) => {
             )}
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+            <label className="form-label">
               Last Name:
               <input
                 placeholder="Fay"
@@ -167,8 +164,7 @@ const SignUpPage = ({ formtype }) => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.firstName ? 'border-red-500' : 'border-gray-200'
-                  } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                className={`w-full md:w-[192px h-[52px]    appearance-none block  bg-gray-100 text-gray-700 border  rounded-lg p-[18px] mt-[11px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${formErrors.lastName ? 'border-red-500' : 'border-gray-100'}`}
                 role="textbox"
                 aria-label="Last Name"
               />
@@ -181,8 +177,8 @@ const SignUpPage = ({ formtype }) => {
           </div>
         </div>
 
-        <div className="mb-4">
-          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="mb-0">
+          <label className="form-label">
             Username:
             <input
               placeholder="ryanfay"
@@ -190,8 +186,7 @@ const SignUpPage = ({ formtype }) => {
               name="username"
               value={formData.username}
               onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
-                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              className={`w-[400px] h-[52px] appearance-none block  bg-gray-100 text-gray-700 border  rounded-lg p-[18px] mt-[11px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${formErrors.username ? 'border-red-500' : 'border-gray-100'}`}
               role="textbox"
               aria-label="Username"
             />
@@ -201,8 +196,8 @@ const SignUpPage = ({ formtype }) => {
           )}
         </div>
 
-        <div className="mb-4">
-          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="mb-0">
+          <label className="form-label">
             Email:
             <input
               placeholder="ryanfay@edgevana.com"
@@ -210,8 +205,7 @@ const SignUpPage = ({ formtype }) => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.username ? 'border-red-500' : 'border-gray-200'
-                } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              className={`w-[400px] h-[52px] appearance-none block  bg-gray-100 text-gray-700 border  rounded-lg p-[18px] mt-[11px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${formErrors.email ? 'border-red-500' : 'border-gray-100'}`}
               role="textbox"
               aria-label="Email Address"
             />
@@ -221,8 +215,8 @@ const SignUpPage = ({ formtype }) => {
           )}
         </div>
 
-        <div className="mb-6">
-          <label className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="mb-0">
+          <label className="form-label">
             Password:
             <div className="relative">
               <input
@@ -231,17 +225,16 @@ const SignUpPage = ({ formtype }) => {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${formErrors.password ? 'border-red-500' : 'border-gray-200'
-                  } rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                className={`w-[400px] h-[52px] appearance-none block  bg-gray-100 text-gray-700 border  rounded-lg p-[18px] mt-[11px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500  ${formErrors.password ? 'border-red-500' : 'border-gray-100'}`}
                 role="textbox"
                 aria-label="Password"
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 px-3 flex items-center"
+                className="absolute inset-y-0 right-0 px-5 text-gray-700 flex items-center"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                {showPassword ? <RiEyeOffFill style={{ fontSize: '16px' }} /> : <RiEyeFill style={{ fontSize: '16px' }} />}
               </button>
 
             </div>
@@ -251,20 +244,20 @@ const SignUpPage = ({ formtype }) => {
           )}
         </div>
 
-        <div className="mb-6">
+        <div className="mt-[40px] mb-[29px]">
           <label className="custom-checkbox flex items-start text-gray-700 font-bold mb-2">
             <input
               type="checkbox"
               name="privacyPolicy"
               checked={formData.privacyPolicy}
               onChange={handleInputChange}
-              className="leading-tight w-6 h-6 mr-5  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
+              className="leading-tight w-5 h-5 mr-[27px]  checked checked:bg-brand-darkblue checked:border-x-2 text-white text-normal"
               role="checkbox"
               aria-label="I agree to the terms of Privacy Policy"
             />
             <span className="checkmark"></span>
-            <p className="text-sm font-normal">
-              I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-bold">Terms of Use</span>, and I have read the <span className="text-sm font-bold">Privacy Policy</span>
+            <p className="text-sm font-normal text-[14px] leading-[24px]">
+              I certify that I am 18 years of age or older, I agree to the Edgevana&apos;s <span className="text-sm font-semibold text-brand-darkblue">Terms of Use</span>, and I have read the <span className="text-sm font-semibold text-brand-darkblue">Privacy Policy</span>
             </p>
           </label>
           {formErrors.privacyPolicy && (
@@ -272,22 +265,22 @@ const SignUpPage = ({ formtype }) => {
           )}
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-5">
+        <div className="flex flex-col items-center justify-between gap-8">
           <button
             type="submit"
-            className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+            className="bg-brand-darkblue w-full hover:bg-brand-darkblue-light text-white font-normal text-[14px] leading-[17px] p-[18px] rounded-xl focus:outline-none focus:shadow-outline "
           >
 
             {!formValid ? 'Not valid form' : isSubmitting ? 'Submitting' : 'Sign Up'}
           </button>
 
           {formtype === "business" ?
-            (<Link href="/signup-ordinar">
-              <span className="font-bold text-brand-darkblue" >Sign Up </span>
+            (<Link href="/signup-ordinar" className="text-[14px] leading-[17px] font-semibold">
+              <span className="font-semibold text-brand-darkblue " >Sign Up </span>
               for ordinary account
             </Link>) :
-            (<Link href="/signup-business">
-              <span className="font-bold text-brand-darkblue" >Sign Up </span>
+            (<Link href="/signup-business" className="text-[14px] leading-[17px]">
+              <span className="font-semibold text-brand-darkblue " >Sign Up </span>
               for business account
             </Link>)
           }
