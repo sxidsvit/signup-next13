@@ -18,12 +18,20 @@ module.exports = {
       colors: {
         "brand-darkblue": "hsl(231, 56%, 40%)",
         "brand-darkblue-light": "hsl(231, 56%, 60%)",
-        black: "rgb(42, 42, 60)",
+        black: "rgba(21, 31, 78, 1)",
         gray: {
-          '700': "rgb(42, 42, 60)",
+          '700': "rgba(131, 138, 169, 1)",
         }
-
       },
+      textColor: {
+        'dark': 'black',
+      },
+      variants: {
+        extend: {
+          textColor: ['focus'],
+        },
+      },
+
     },
     plugins: [],
   }
