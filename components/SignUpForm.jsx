@@ -6,12 +6,12 @@ import { useRouter } from "next/navigation"
 import Link from 'next/link';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
-
 import { Poppins } from 'next/font/google'
 import * as z from 'zod'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import { toast } from 'react-toastify'
+
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -30,6 +30,8 @@ const schema = z.object({
 const SignUpPage = ({ formtype }) => {
 
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', '')
+  console.log('currentUser: ', currentUser);
 
   const initialFormData = {
     firstName: '',
@@ -83,12 +85,14 @@ const SignUpPage = ({ formtype }) => {
 
       if (response.ok) {
         const jsonData = await response.json();
+        console.log('response.ok - jsonData: ', jsonData);
         const status = response.statusText || 'Created'
         toast.success(`${status}`, {
           position: "top-center",
           autoclose: 1000,
           theme: 'light',
           onClose: () => {
+            setCurrentUser(jsonData)
             setFormData(initialFormData)
             setFormErrors({})
             setFormValid(true)

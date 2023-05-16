@@ -1,4 +1,5 @@
 import React from 'react'
+import YouAreWelcome from '@/components/YouAreWelcome'
 
 const Welcome = () => {
   return (
@@ -6,7 +7,9 @@ const Welcome = () => {
       <h1 className="text-3xl font-bold text-center my-8">
         Registration completed successfully
       </h1>
-      <h3 className="text-xl text-center  my-8">You are welcome !</h3>
+      <h3 className="text-xl text-center  my-8">
+        <YouAreWelcome />
+      </h3>
     </main>
   )
 }
